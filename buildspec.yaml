@@ -8,10 +8,10 @@ phases:
     commands:
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.10/2023-11-14/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
-      - mv ./kubectl /usr/local/bin/kubectl
+      - sudo mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
       - aws eks --region ap-northeast-2 update-kubeconfig --name eks-test
-      - kubectl get pod --all-namespaces
+      - kubectl version --client
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
