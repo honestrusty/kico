@@ -10,6 +10,7 @@ phases:
       - chmod +x ./kubectl
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
+      - bash
       - aws eks --region ap-northeast-2 update-kubeconfig --name eks-test
       - kubectl version --client
   pre_build:
