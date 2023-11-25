@@ -6,14 +6,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eks-test
+      app: eks
   template:
     metadata:
       labels:
-        app: eks-test
+        app: eks
     spec:
       containers:
-        - name: eks-test
+        - name: eks
           image: AWS_ECR_URI
           ports:
             - containerPort: 80
