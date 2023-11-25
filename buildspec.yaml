@@ -17,7 +17,7 @@ phases:
       - bash
       - aws --version
       - uname -a
-      - ls -al /usr/local/bin/
+      - cat /usr/local/bin/kubectl
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-test
       - kubectl get po
   pre_build:
