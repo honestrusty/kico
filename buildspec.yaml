@@ -15,8 +15,11 @@ phases:
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
       - bash
+      - aws --version
+      - uname -a
+      - /usr/local/bin/kubectl version --client
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-test
-      - kubectl get pod -n kube-system
+      - kubectl get po
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
