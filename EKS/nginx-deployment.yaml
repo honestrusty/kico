@@ -8,12 +8,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: my-nginx
+      app: my-nginx
   replicas: 1
   template:
     metadata:
       labels:
-        run: my-nginx
+        app: my-nginx
 #pod 안에 생성할 container 정의
     spec:
       containers:
@@ -21,7 +21,4 @@ spec:
         image: AWS_ECR_URI
         ports:
         - containerPort: 8080
-        imagePullPolicy: Always
-        env:
-            - name: DATE
-              value: 'DATE_STRING'              
+        imagePullPolicy: Always          
