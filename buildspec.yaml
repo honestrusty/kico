@@ -22,7 +22,8 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/
   build:
     commands:
-      - echo Building the Docker image
+      - echo Building the Docker
+      image
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
@@ -32,7 +33,7 @@ phases:
       - AWS_ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - DATE='date'
       - echo Build completed on $DATE
-      - sed -i.bak 's#AWS_ECR_URI#'"$AWS_ECR_URI"'#' ./EKS/Deployment.yaml
-      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./EKS/Deployment.yaml
-      - kubectl apply -f ./EKS/Deployment.yaml
-      - kubectl apply -f ./EKS/Service.yaml
+      - sed -i.bak 's#AWS_ECR_URI#'"$AWS_ECR_URI"'#' ./EKS/nginx-deployment.yaml
+      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./EKS/nginx-deployment.yaml
+      - kubectl apply -f ./EKS/nginx-deployment.yaml
+      - kubectl apply -f ./EKS/nginx-service.yaml

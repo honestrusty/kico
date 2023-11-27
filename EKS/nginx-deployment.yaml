@@ -1,0 +1,27 @@
+# nginx 서비스 배포방법 정의
+#deployment 정의
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+#deployment에서 관리하는 pod 정의
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+#pod 안에 생성할 container 정의
+    spec:
+      containers:
+      - name: my-nginx
+        image: AWS_ECR_URI
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+        env:
+            - name: DATE
+              value: 'DATE_STRING'              

@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
-RUN apt-get update
-RUN apt-get install apache2 -y
-ADD index.html /var/www/html/index.html
+FROM ubuntu:20.04
+RUN apt update
+RUN apt install nginx -y
 EXPOSE 80
-CMD ["apachectl", "-D", "FOREGROUND"]
+systemctl start nginx
+CMD ["sh","-c","/usr/sbin/nginx -g 'daemon off;'"]
