@@ -6,8 +6,8 @@
         install:
           commands:
             - echo Installing NGINX
-            - apt-get update
-            - apt-get install nginx -y
+            - yum update
+            - yum install nginx -y
         build:
           commands:
             - echo Build started on 'date'
