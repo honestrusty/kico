@@ -5,9 +5,12 @@
       phases:
         install:
           commands:
+            - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+            - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+            - AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
+            - AWS_REGION=$AWS_DEFAULT_REGION
             - echo Installing NGINX
-            - sudo yum update -y
-            - sudo yum install nginx -y
+            - yum install nginx -y
         build:
           commands:
             - echo Build started on 'date'
