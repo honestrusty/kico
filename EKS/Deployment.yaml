@@ -16,7 +16,8 @@ spec:
         - name: eks
           image: AWS_ECR_URI
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+              protocol: TCP
           imagePullPolicy: IfNotPresent
           env:
             - name: DATE
