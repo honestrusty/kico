@@ -1,3 +1,5 @@
+# ./EKS/Deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,9 +18,8 @@ spec:
         - name: eks
           image: AWS_ECR_URI
           ports:
-            - containerPort: 8080
-              protocol: TCP
-          imagePullPolicy: IfNotPresent
+            - containerPort: 80
+          imagePullPolicy: Always
           env:
             - name: DATE
               value: 'DATE_STRING'

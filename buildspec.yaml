@@ -6,16 +6,12 @@ phases:
     runtime-versions:
       docker: 19
     commands:
-      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-      - AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
-      - AWS_REGION=$AWS_DEFAULT_REGION
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.7/2023-11-14/bin/linux/arm64/kubectl
       - chmod +x ./kubectl
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
-      - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks
-      - kubectl get pod --all-namespaces
+      - aws eks --region ap-northeast-2 update-kubeconfig --name eks
+      - kubectl get po -n kube-system
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
