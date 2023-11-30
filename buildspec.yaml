@@ -6,12 +6,12 @@ phases:
     runtime-versions:
       docker: 19
     commands:
-      - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.17/2023-10-17/bin/linux/amd64/kubectl
+      - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.17/2023-10-17/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
-      - mv ./kubectl /usr/local/bin/kubectl
-      - mkdir ~/.kube
+      - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+      - echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks
-      - kubectl get po -n kube-system
+      - kubectl version --short --client
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
