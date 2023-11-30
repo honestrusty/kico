@@ -4,14 +4,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 19
+      docker: 18
     commands:
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.17/2023-10-17/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks
-      - kubectl get pod --all-namespaces
+      - kubectl get po -n kube-system
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
